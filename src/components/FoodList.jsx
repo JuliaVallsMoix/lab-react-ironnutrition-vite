@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Row } from "antd";
 
 import foodsJson from "../foods.json";
 import FoodBox from "./FoodBox";
@@ -25,9 +26,11 @@ export default function FoodList() {
     return <>
         <AddFoodForm onCreateFood={handleCreateFood} />
 
-      {/** Iterate over the foods array and render a <FoodBox /> component for each individual food item. */}
+        {/** Iterate over the foods array and render a <FoodBox /> component for each individual food item. */}
 
-      {foods.map(f => <FoodBox key={f.id} food={f} onDelete={handleDelete} />)}
+        <Row style={{ justifyContent: 'center' }} >
+            {foods.map(f => <FoodBox key={f.id} food={f} onDelete={handleDelete} />)}
+        </Row>
 
     </>
 }
