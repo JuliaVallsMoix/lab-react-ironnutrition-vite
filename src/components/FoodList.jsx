@@ -15,7 +15,7 @@ export default function FoodList() {
 
     const handleDelete = (id) => {
         // Aplicar correctamente el método filter
-        const filteredFoods = foodsJson.filter(f => f.id !== id);
+        const filteredFoods = foods.filter(f => f.id !== id);
 
         // Actualizar la variable de estado
         setFoods(filteredFoods);
@@ -39,18 +39,6 @@ export default function FoodList() {
 
     }
 
-    if (foods === []) {
-        return (
-
-            <div>
-                <p>Oops! There is no more content to show.</p>
-                <img src={HiBan} alt="empty icon" />
-
-            </div>
-
-        )
-    } else {
-
     return <>
         <AddFoodForm onCreateFood={handleCreateFood} />
 
@@ -59,9 +47,14 @@ export default function FoodList() {
         {/** Iterate over the foods array and render a <FoodBox /> component for each individual food item. */}
 
         <Row style={{ justifyContent: 'center' }} >
+
+            {foods.length === 0 && <div>
+                <p style={{fontSize: '2rem'}} ><strong>Oops! There is no more content to show.</strong></p>
+                <HiBan style={{height: '4rem', width: '4rem'}} />
+
+            </div>}
             {foods.map(f => <FoodBox key={f.id} food={f} onDelete={handleDelete} />)}
         </Row>
 
     </>
-}
 }
